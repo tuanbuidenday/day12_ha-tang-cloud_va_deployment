@@ -13,7 +13,6 @@
 ```
 develop/
 ├── app.py              # Agent với API Key auth
-├── test_auth.py        # Test script
 └── requirements.txt
 ```
 
@@ -50,7 +49,7 @@ production/
 
 ### Chạy thử
 ```bash
-cd advanced
+cd production
 pip install -r requirements.txt
 python app.py
 
