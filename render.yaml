@@ -1,7 +1,14 @@
+# ============================================================
+# render.yaml — MUST live at the repo ROOT for Render Blueprint.
+# The actual app lives in 06-lab-complete/, so rootDir points there:
+# Render uses 06-lab-complete/ as the Docker build context and reads
+# 06-lab-complete/Dockerfile.
+# ============================================================
 services:
   - type: web
     name: ai-agent-production
     runtime: docker
+    rootDir: 06-lab-complete        # build context + Dockerfile location
     region: singapore
     plan: starter
     healthCheckPath: /health
@@ -31,9 +38,6 @@ services:
       - key: RATE_LIMIT_WINDOW_SECONDS
         value: "60"
 
-  # NOTE: Render Blueprint only reads render.yaml from the REPO ROOT.
-  # The active deploy file is /render.yaml (with rootDir: 06-lab-complete).
-  # This copy is kept for reference and is identical in intent.
   # Redis (Render "Key Value") — shared state: rate limit, cost guard, history
   - type: keyvalue
     name: agent-redis
