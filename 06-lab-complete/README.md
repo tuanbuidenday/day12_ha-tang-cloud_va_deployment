@@ -47,17 +47,17 @@ Kết hợp TẤT CẢ những gì đã học trong 1 project hoàn chỉnh.
 cp .env.example .env
 
 # 2. Chạy với Docker Compose
-docker compose up
+docker compose up --scale agent=3
 
 # 3. Test
-curl http://localhost/health
+curl http://localhost:8080/health
 
 # 4. Lấy API key từ .env, test endpoint
-API_KEY=$(grep AGENT_API_KEY .env | cut -d= -f2)
+API_KEY=$(grep AGENT_API_KEY .env.example | cut -d= -f2)
 curl -H "X-API-Key: $API_KEY" \
-     -X POST http://localhost/ask \
+     -X POST http://localhost:8080/ask \
      -H "Content-Type: application/json" \
-     -d '{"question": "What is deployment?"}'
+     -d '{"user_id":"student1","question":"What is deployment?"}'
 ```
 
 ---
