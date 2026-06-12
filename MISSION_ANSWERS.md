@@ -80,9 +80,17 @@ Client → Nginx (:80/:443, reverse proxy + LB) → agent (FastAPI, 2 replicas)
 
 ## Part 3: Cloud Deployment
 
-### Exercise 3.1: Railway deployment
-- URL: **TODO** — needs a Railway account; `06-lab-complete/railway.toml` is ready (`builder = "DOCKERFILE"`, `healthcheckPath = "/health"`, restart on failure).
-- Screenshot: TODO after deploy.
+### Exercise 3.1: Cloud deployment (Render)
+- **Public URL:** https://ai-agent-production-n3l0.onrender.com
+- **Platform:** Render — Docker web service (`plan: free`) + Render Key Value (Redis), region Singapore, via [render.yaml](render.yaml) Blueprint (`rootDir: 06-lab-complete`).
+- **Verified live:**
+```text
+GET  /health -> 200 {"status":"ok","environment":"production","checks":{"llm":"openai","redis":"ok"}}
+GET  /ready  -> 200 {"ready":true,"storage":"redis"}
+POST /ask (no key) -> 401
+```
+- Railway alternative is also ready in [06-lab-complete/railway.toml](06-lab-complete/railway.toml).
+- Screenshot: see `screenshots/`.
 
 ### Exercise 3.2: `render.yaml` vs `railway.toml` — what's different?
 | | `railway.toml` | `render.yaml` |

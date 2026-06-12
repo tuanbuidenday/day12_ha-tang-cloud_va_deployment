@@ -42,7 +42,7 @@ Toàn bộ ở [06-lab-complete/](06-lab-complete/). Mỗi tiêu chí + nơi cà
 | **Security** | 20 | [auth.py](06-lab-complete/app/auth.py), [rate_limiter.py](06-lab-complete/app/rate_limiter.py), [cost_guard.py](06-lab-complete/app/cost_guard.py) | no key → 401; >10/min → 429; vượt budget → 402 |
 | **Reliability** | 20 | [main.py](06-lab-complete/app/main.py) — `/health`, `/ready`, SIGTERM handler, JSON logging | `/health` 200, `/ready` 200/503, shutdown handler có |
 | **Scalability** | 15 | [conversation_store.py](06-lab-complete/app/conversation_store.py) (Redis), [nginx.conf](06-lab-complete/nginx.conf) LB | hội thoại liền mạch qua 3 instance; nginx round-robin |
-| **Deployment** | 10 | [render.yaml](render.yaml) (root, `rootDir: 06-lab-complete`), [railway.toml](06-lab-complete/railway.toml) | Public URL → xem [DEPLOYMENT.md](DEPLOYMENT.md) |
+| **Deployment** | 10 | [render.yaml](render.yaml) (root, `rootDir: 06-lab-complete`) | **LIVE:** https://ai-agent-production-n3l0.onrender.com — `/health` 200, `/ready` 200, `/ask` no-key 401 ✅ |
 
 **Validator tự động:** `python 06-lab-complete/check_production_ready.py` → **20/20 (100%)**.
 
@@ -81,7 +81,8 @@ python check_production_ready.py               # 20/20
 
 ## 6. Trạng thái Deployment
 
-Cấu hình sẵn sàng: [render.yaml](render.yaml) ở **gốc repo** với `rootDir: 06-lab-complete`, tự tạo Redis (`type: keyvalue`) và web service `plan: free` (không cần thẻ). Public URL sẽ được điền vào [DEPLOYMENT.md](DEPLOYMENT.md) sau khi deploy.
+**Đã deploy LIVE trên Render:** https://ai-agent-production-n3l0.onrender.com
+Blueprint [render.yaml](render.yaml) ở **gốc repo** (`rootDir: 06-lab-complete`), Redis `type: keyvalue`, web `plan: free` (không cần thẻ). Đã test live: `/health` 200 (`environment: production`, `redis: ok`), `/ready` 200, `/ask` no-key → 401. Chi tiết: [DEPLOYMENT.md](DEPLOYMENT.md).
 
 - [x] Code đầy đủ, chạy không lỗi (validator 20/20)
 - [x] Multi-stage Dockerfile (332 MB < 500 MB)
@@ -89,5 +90,5 @@ Cấu hình sẵn sàng: [render.yaml](render.yaml) ở **gốc repo** với `ro
 - [x] Health + readiness + graceful shutdown
 - [x] Stateless (Redis) + load balancing (nginx)
 - [x] Không hardcode secret
-- [ ] Public URL (cần deploy bằng tài khoản Render/Railway)
+- [x] **Public URL hoạt động** — https://ai-agent-production-n3l0.onrender.com
 - [ ] Screenshots (`screenshots/`)
