@@ -91,4 +91,4 @@ Blueprint [render.yaml](render.yaml) ở **gốc repo** (`rootDir: 06-lab-comple
 - [x] Stateless (Redis) + load balancing (nginx)
 - [x] Không hardcode secret
 - [x] **Public URL hoạt động** — https://ai-agent-production-n3l0.onrender.com
-- [ ] Screenshots (`screenshots/`)
+- [x] Screenshots — [dashboard](screenshots/dashboard.png), [running](screenshots/running.png), [logs/test](screenshots/test.png)

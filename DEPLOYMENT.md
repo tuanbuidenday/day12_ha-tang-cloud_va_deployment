@@ -77,6 +77,11 @@ curl -X POST http://localhost:8080/ask \
   -d '{"user_id":"student1","question":"Hello"}'
 ```
 
+## Screenshots
+- [Render dashboard — deploy live, Docker/Free/Blueprint](screenshots/dashboard.png)
+- [Service running — production JSON response](screenshots/running.png)
+- [Logs — structured JSON, GET /health 200 OK](screenshots/test.png)
+
 ## Environment Variables Set (on Render)
 - `PORT`
 - `REDIS_URL`
