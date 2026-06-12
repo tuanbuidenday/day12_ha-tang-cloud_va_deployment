@@ -3,7 +3,7 @@ services:
     name: ai-agent-production
     runtime: docker
     region: singapore
-    plan: starter
+    plan: free
     healthCheckPath: /health
     autoDeploy: true
     envVars:
